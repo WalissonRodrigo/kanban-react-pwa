@@ -17,7 +17,7 @@ function useFetchWrapper() {
   };
 
   function request(method: any) {
-    return (url: any, body: any) => {
+    return (url: any, body: any | null | undefined = null) => {
       const requestOptions: any = {
         method,
         headers: authHeader(url),

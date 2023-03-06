@@ -22,7 +22,7 @@ function useUserActions() {
   };
 
   function login(username: string, password: string) {
-    return fetchWrapper.post(`${baseUrl}/auth/login`, { username, password }).then((token) => {
+    return fetchWrapper.post(`${baseUrl}/login`, { username, password }).then((token) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       const userEncrypted = AES.encrypt(
         JSON.stringify({ username, password }),
@@ -50,6 +50,6 @@ function useUserActions() {
   }
 
   function getAll() {
-    return fetchWrapper.get(`${baseUrl}/members`, {}).then(setUsers);
+    return fetchWrapper.get(`${baseUrl}/users`, {}).then(setUsers);
   }
 }
