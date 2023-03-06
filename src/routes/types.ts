@@ -5,8 +5,9 @@ import type { SvgIconProps } from '@mui/material/SvgIcon';
 
 enum Pages {
   Welcome,
-  Page1,
-  Page2,
+  Login,
+  Logout,
+  PageAuthenticated,
   Page3,
   Page4,
   NotFound,
@@ -16,6 +17,7 @@ type PathRouteCustomProps = {
   title?: string;
   component: FC;
   icon?: FC<SvgIconProps>;
+  auth?: boolean;
 };
 
 type Routes = Record<Pages, PathRouteProps & PathRouteCustomProps>;
