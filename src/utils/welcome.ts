@@ -24,8 +24,8 @@ function welcome() {
     'border-radius: 5px',
     'padding: 10px',
   ].join(';');
-
-  console.log(`%c=== ${title} ===`, styles);
+  console.clear();
+  console.log(`%c❤️ ${title} ❤️`, styles);
 }
 
 export default welcome;

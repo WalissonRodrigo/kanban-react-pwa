@@ -2,7 +2,9 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import HomeIcon from '@mui/icons-material/Home';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TerrainIcon from '@mui/icons-material/Terrain';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import asyncComponentLoader from '@/utils/loader';
 
@@ -14,30 +16,41 @@ const routes: Routes = {
     path: '/',
     title: 'Welcome',
     icon: HomeIcon,
+    auth: true,
   },
-  [Pages.Page1]: {
-    component: asyncComponentLoader(() => import('@/pages/Page1')),
-    path: '/page-1',
-    title: 'Page 1',
+  [Pages.Login]: {
+    component: asyncComponentLoader(() => import('@/pages/Login')),
+    path: '/login',
+    title: 'Login',
     icon: GitHubIcon,
   },
-  [Pages.Page2]: {
-    component: asyncComponentLoader(() => import('@/pages/Page2')),
-    path: '/page-2',
-    title: 'Page 2',
-    icon: AddTaskIcon,
+  [Pages.PageAuthenticated]: {
+    component: asyncComponentLoader(() => import('@/pages/PageAuthenticated')),
+    path: '/page-authenticated',
+    title: 'Page Auth',
+    icon: LockOpenIcon,
+    auth: true,
+  },
+  [Pages.Logout]: {
+    component: asyncComponentLoader(() => import('@/pages/Logout')),
+    path: '/logout',
+    title: 'Logout',
+    icon: LogoutIcon,
+    auth: true,
   },
   [Pages.Page3]: {
     component: asyncComponentLoader(() => import('@/pages/Page3')),
     path: '/page-3',
     title: 'Page 3',
     icon: TerrainIcon,
+    auth: true,
   },
   [Pages.Page4]: {
     component: asyncComponentLoader(() => import('@/pages/Page4')),
     path: '/page-4',
     title: 'Page 4',
     icon: BugReportIcon,
+    auth: true,
   },
   [Pages.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),

@@ -2,9 +2,9 @@ import isMobile from '@/utils/is-mobile';
 
 import type { Notifications } from './types';
 
-const title = 'React PWA';
+const title = 'Kanban';
 
-const email = 'auther-email@gmail.com';
+const email = 'walissonrodrigo@outlook.com';
 
 const repository = 'https://github.com/WalissonRodrigo/kanban-react-pwa';
 
