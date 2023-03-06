@@ -79,7 +79,7 @@ function MyCoolComponent() {
   const [notifications, actions] = useNotification();
 
   function showNotification() {
-    actions.push({ message: 'Բարև, կարմի՛ր արև' });
+    actions.push({ message: 'Moses had the first tablet that could connect to the cloud' });
   }
 
   return (
