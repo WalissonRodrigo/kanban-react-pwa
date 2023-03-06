@@ -59,20 +59,6 @@ const PaperStyled = styled(Paper)(({ theme }) => ({
   height: '55vh',
 }));
 
-const GridContainerRootStyled = styled(Grid)(({ theme }) => ({
-  height: '100%',
-  width: '100vw',
-  backgroundImage: `url("https://t3.ftcdn.net/jpg/05/06/79/02/240_F_506790264_N8BVZ9NLLRrTAShK6PADQmo0SZ4LUuJJ.jpg")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundColor:
-    theme.palette.info.light === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
 const GridStyled = styled(Grid)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -117,7 +103,6 @@ function Login() {
   }, []);
 
   // form validation rules
-
   const formOptions = { resolver: yupResolver(ValidationSchema) };
 
   // get functions to build form with useForm() hook
