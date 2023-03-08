@@ -155,7 +155,7 @@ function Kanban() {
 
   return (
     <>
-      <Meta title="Manager" />
+      <Meta title="" />
       <Dialog
         {...dialog}
         open={dialog.open}
