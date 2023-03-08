@@ -43,101 +43,107 @@ function CardKanban(props: CardKanbanProps) {
           <Typography component="div" variant="body1">
             <MuiMarkdown>{card.content}</MuiMarkdown>
           </Typography>
-        </CardContent>
-        <Divider />
-        <CardActions>
-          {card.status !== StatusKanban.ToDo && (
-            <Button
-              size="small"
-              color="success"
-              variant="outlined"
-              onClick={() => {
-                const payload = { ...card, status: StatusKanban.ToDo };
-                actions.updateCard(card.id, payload);
-                actions.getAll();
-              }}
-            >
-              To Do
-            </Button>
-          )}
-          {card.status !== StatusKanban.Doing && (
-            <Button
-              size="small"
-              color="info"
-              variant="outlined"
-              onClick={() => {
-                const payload = { ...card, status: StatusKanban.Doing };
-                actions.updateCard(card.id, payload);
-                actions.getAll();
-              }}
-            >
-              Going
-            </Button>
-          )}
-          {card.status !== StatusKanban.Done && (
-            <Button
-              size="small"
-              color="warning"
-              variant="outlined"
-              onClick={() => {
-                const payload = { ...card, status: StatusKanban.Done };
-                actions.updateCard(card.id, payload);
-                actions.getAll();
-              }}
-            >
-              Done
-            </Button>
-          )}
-        </CardActions>
-        <Divider />
-        <CardActions>
-          <Grid container spacing={2} direction="row" justifyContent="flex-end">
-            <Grid item>
+
+          <Divider style={{ marginTop: 32, marginBottom: 12 }} />
+          <CardActions>
+            {card.status !== StatusKanban.ToDo && (
               <Button
                 size="small"
                 color="success"
-                variant="contained"
+                variant="outlined"
                 onClick={() => {
-                  setDialog({
-                    ...dialog,
-                    open: true,
-                    children: <FormKanban {...{ ...dialog, card }} />,
-                  });
+                  const payload = { ...card, status: StatusKanban.ToDo };
+                  actions.updateCard(card.id, payload);
+                  actions.getAll();
                 }}
               >
-                Edit
+                To Do
               </Button>
-            </Grid>
-            <Grid item>
+            )}
+            {card.status !== StatusKanban.Doing && (
               <Button
                 size="small"
-                color="secondary"
-                variant="contained"
-                onClick={() =>
-                  setDialog({
-                    ...dialog,
-                    open: true,
-                    title: 'Confirm Exclusion?',
-                    textButtonSubmit: 'Confirm',
-                    children: (
-                      <ActionButton
-                        type="submit"
-                        textButtonSubmit="Confirm"
-                        confirm={() => {
-                          actions.deleteCard(card.id);
-                          dialog.onClose();
-                        }}
-                        cancel={() => dialog.onClose()}
-                      />
-                    ),
-                  })
-                }
+                color="info"
+                variant="outlined"
+                onClick={() => {
+                  const payload = { ...card, status: StatusKanban.Doing };
+                  actions.updateCard(card.id, payload);
+                  actions.getAll();
+                }}
               >
-                Delete
+                Going
               </Button>
+            )}
+            {card.status !== StatusKanban.Done && (
+              <Button
+                size="small"
+                color="warning"
+                variant="outlined"
+                onClick={() => {
+                  const payload = { ...card, status: StatusKanban.Done };
+                  actions.updateCard(card.id, payload);
+                  actions.getAll();
+                }}
+              >
+                Done
+              </Button>
+            )}
+          </CardActions>
+          <Divider style={{ marginBottom: 24, marginTop: 12 }} />
+          <CardActions>
+            <Grid container spacing={2} direction="row" justifyContent="flex-end">
+              <Grid item>
+                <Button
+                  size="small"
+                  color="success"
+                  variant="contained"
+                  onClick={() => {
+                    setDialog({
+                      ...dialog,
+                      open: true,
+                      title: `Edit Card Kanban: ${card.id}`,
+                      children: (
+                        <FormKanban
+                          {...{ ...dialog, card, title: `Edit Card Kanban: ${card.id}` }}
+                        />
+                      ),
+                    });
+                  }}
+                >
+                  Edit
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  size="small"
+                  color="secondary"
+                  variant="contained"
+                  onClick={() =>
+                    setDialog({
+                      ...dialog,
+                      open: true,
+                      title: 'Confirm Exclusion?',
+                      textButtonSubmit: 'Confirm',
+                      children: (
+                        <ActionButton
+                          type="submit"
+                          textButtonSubmit="Confirm"
+                          confirm={() => {
+                            actions.deleteCard(card.id);
+                            dialog.onClose();
+                          }}
+                          cancel={() => dialog.onClose()}
+                        />
+                      ),
+                    })
+                  }
+                >
+                  Delete
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardActions>
+          </CardActions>
+        </CardContent>
       </Card>
     </Paper>
   );
