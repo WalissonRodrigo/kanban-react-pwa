@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import { useForm } from 'react-hook-form';
 
-import { FormHelperText, TextField, styled } from '@mui/material';
+import { FormControl, FormHelperText, TextField, styled } from '@mui/material';
 
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -93,7 +93,20 @@ export default function FormKanban({ ...rest }) {
         error={errors.content && errors?.content?.message !== undefined}
         {...register('content')}
       />
-      {errors.apiError && <FormHelperText id="apiError">{errors.apiError?.message}</FormHelperText>}
+      {errors.apiError && (
+        <FormControl
+          style={{
+            backgroundColor: '#a7505099',
+            width: '100%',
+            borderRadius: 4,
+            minHeight: 24,
+          }}
+        >
+          <FormHelperText id="apiError">
+            <li>{errors.apiError?.message}</li>
+          </FormHelperText>
+        </FormControl>
+      )}
       <ActionButton
         textButtonSubmit={rest.textButtonSubmit}
         type="submit"
