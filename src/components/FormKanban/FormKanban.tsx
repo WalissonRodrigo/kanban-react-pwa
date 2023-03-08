@@ -47,8 +47,8 @@ export default function FormKanban({ ...rest }) {
         actions.getAll();
         rest.onClose();
       })
-      .catch((error) => {
-        setError('apiError', { message: error });
+      .catch((err) => {
+        setError('apiError', { message: err.error });
       });
   const createCard = (payload: Card) =>
     actions
@@ -57,8 +57,8 @@ export default function FormKanban({ ...rest }) {
         actions.getAll();
         rest.onClose();
       })
-      .catch((error) => {
-        setError('apiError', { message: error });
+      .catch((err) => {
+        setError('apiError', { message: err.error });
       });
   function onSubmit(data: ValidationSchemaProp): Promise<void> {
     const payload = data as Card;

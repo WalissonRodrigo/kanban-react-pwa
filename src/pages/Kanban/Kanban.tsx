@@ -33,9 +33,9 @@ function Kanban() {
         children: children,
       }),
   });
-  const cardsToDoFilter = () => cards.filter((card) => card.status === 'ToDo');
-  const cardsGoingFilter = () => cards.filter((card) => card.status === 'Doing');
-  const cardsDoneFilter = () => cards.filter((card) => card.status === 'Done');
+  const cardsToDoFilter = () => (cards || []).filter((card) => card.status === 'ToDo');
+  const cardsGoingFilter = () => (cards || []).filter((card) => card.status === 'Doing');
+  const cardsDoneFilter = () => (cards || []).filter((card) => card.status === 'Done');
   const [toDoList, setToDoList] = useState(cardsToDoFilter());
   const ToDoListMemo = useMemo(
     () => (
@@ -132,8 +132,12 @@ function Kanban() {
   );
   const startPulling = () => {
     clearInterval(pulling);
-    const minute = 1000 * 60;
-    pulling = setInterval(actions.getAll, minute / 32);
+    const miliseconds = 1000;
+    const seconds = 5;
+    const time = miliseconds * seconds;
+    pulling = setInterval(() => {
+      setTimeout(actions.getAll, 1);
+    }, time);
   };
 
   const stopPulling = () => {
