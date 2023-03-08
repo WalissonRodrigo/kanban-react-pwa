@@ -8,6 +8,7 @@ import { AES } from 'crypto-js';
 
 import { useFetchWrapper } from '../_helpers';
 import { Actions, Card, StatusKanban, cardsAtom } from '../_state';
+import { useUserActions } from './user.actions';
 
 export { useCardActions };
 
@@ -16,6 +17,7 @@ function useCardActions(): [Card[], Actions] {
   const baseUrl = `http://localhost:5000`;
   const fetchWrapper = useFetchWrapper();
   const [cards, setCards] = useRecoilState(cardsAtom);
+  const user = useUserActions();
 
   return [
     cards,
@@ -28,7 +30,12 @@ function useCardActions(): [Card[], Actions] {
   ];
 
   function getAll() {
-    return fetchWrapper.get(`${baseUrl}/cards`).then(setCards);
+    return fetchWrapper
+      .get(`${baseUrl}/cards`)
+      .then(setCards)
+      .catch((error) => {
+        if (error.data.statusCode === 401) user.reAuthenticate().then(getAll);
+      });
   }
 
   function createCard(card: object) {

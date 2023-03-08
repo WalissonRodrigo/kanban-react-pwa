@@ -110,9 +110,8 @@ function Login() {
   const { errors, isSubmitting } = formState;
 
   function onSubmit(data: ValidationSchemaProp): Promise<void> {
-    return userActions.login(data.username, data.password).catch((error) => {
-      console.log(error);
-      setError('apiError', { message: error });
+    return userActions.login(data.username, data.password).catch((err) => {
+      setError('apiError', { message: err.error });
     });
   }
   return (
