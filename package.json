@@ -81,8 +81,12 @@
   "keywords": [
     "react",
     "pwa",
-    "starter-kit",
+    "recoil",
     "vite",
     "kanban"
-  ]
+  ],
+  "engines": {
+    "npm": ">=8.19.2",
+    "node": ">=16.18.1"
+  }
 }
