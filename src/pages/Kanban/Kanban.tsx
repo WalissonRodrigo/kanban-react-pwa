@@ -39,10 +39,10 @@ function Kanban() {
   const [toDoList, setToDoList] = useState(cardsToDoFilter());
   const ToDoListMemo = useMemo(
     () => (
-      <Grid item xs={12} md={4} style={{ paddingLeft: 32, height: '100%' }}>
+      <Grid item xs={12} md={4} style={{ height: '100%' }}>
         <Grid item xs={12}>
-          <Typography component="p" variant="h5" style={{ color: '#9EEB47', fontWeight: 'bold' }}>
-            ToDo
+          <Typography component="p" variant="h5" style={{ color: '#2e7d32', fontWeight: 'bold' }}>
+            To Do
           </Typography>
         </Grid>
         <Grid
@@ -59,7 +59,7 @@ function Kanban() {
               item
               xs={12}
               key={card.id}
-              style={{ marginTop: 8, marginBottom: 8, paddingRight: 12, width: '100%' }}
+              style={{ marginTop: 8, marginBottom: 8, width: '100%' }}
             >
               <CardKanban {...{ card, dialog, setDialog }} />
             </Grid>
@@ -74,7 +74,7 @@ function Kanban() {
     () => (
       <Grid item xs={12} md={4} style={{ height: '100%' }}>
         <Grid item xs={12}>
-          <Typography component="p" variant="h5" style={{ color: '#5BD1D7', fontWeight: 'bold' }}>
+          <Typography component="p" variant="h5" style={{ color: '#0288d1', fontWeight: 'bold' }}>
             Doing
           </Typography>
         </Grid>
@@ -92,7 +92,7 @@ function Kanban() {
               item
               xs={12}
               key={card.id}
-              style={{ marginTop: 8, marginBottom: 8, paddingRight: 12, width: '100%' }}
+              style={{ marginTop: 8, marginBottom: 8, width: '100%' }}
             >
               <CardKanban {...{ card, dialog, setDialog }} />
             </Grid>
@@ -105,9 +105,9 @@ function Kanban() {
   const [doneList, setDoneList] = useState(cardsDoneFilter());
   const DoneListMemo = useMemo(
     () => (
-      <Grid item xs={12} md={4} style={{ paddingRight: 32, height: '100%' }}>
+      <Grid item xs={12} md={4} style={{ height: '100%' }}>
         <Grid item xs={12}>
-          <Typography component="p" variant="h5" style={{ color: 'BCCEFB', fontWeight: 'bold' }}>
+          <Typography component="p" variant="h5" style={{ color: '#ed6c02', fontWeight: 'bold' }}>
             Done
           </Typography>
         </Grid>
@@ -121,11 +121,7 @@ function Kanban() {
           style={{ height: '100%' }}
         >
           {doneList.map((card) => (
-            <Grid
-              item
-              key={card.id}
-              style={{ marginTop: 8, marginBottom: 8, paddingRight: 12, width: '100%' }}
-            >
+            <Grid item key={card.id} style={{ marginTop: 8, marginBottom: 8, width: '100%' }}>
               <CardKanban {...{ card, dialog, setDialog }} />
             </Grid>
           ))}
@@ -165,11 +161,15 @@ function Kanban() {
         open={dialog.open}
         textButtonSubmit={dialog.textButtonSubmit || ''}
         title={dialog.title}
+        dialog={{
+          maxWidth: 'lg',
+          keepMounted: true,
+        }}
       >
         {dialog.children}
       </Dialog>
       <FullSizeFlexBoxStart flexDirection={isPortrait ? 'column' : 'row'}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{ padding: 16 }}>
           {ToDoListMemo}
           {GoingListMemo}
           {DoneListMemo}
