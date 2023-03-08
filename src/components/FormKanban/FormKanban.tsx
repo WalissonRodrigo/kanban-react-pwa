@@ -81,6 +81,7 @@ export default function FormKanban({ ...rest }) {
       />
       <Controller
         control={control}
+        required
         render={({ field }) => (
           <Editor
             apiKey="gs8t6hmd1jb6hs1wf3awog5dshponbrypxp17ylpq2lka3dt"
@@ -88,7 +89,8 @@ export default function FormKanban({ ...rest }) {
             init={{
               entity_encoding: 'raw',
               plugins: 'link image code',
-              toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+              toolbar:
+                'undo redo | blocks | fontsize | bold italic link quickimage forecolor removeformat | alignleft aligncenter alignright alignjustify | code',
             }}
             onChange={(e) => {
               field.onChange(e.target.getContent());
@@ -106,6 +108,7 @@ export default function FormKanban({ ...rest }) {
             width: '100%',
             borderRadius: 4,
             minHeight: 24,
+            marginTop: 16,
           }}
         >
           <FormHelperText id="apiError">
@@ -118,6 +121,7 @@ export default function FormKanban({ ...rest }) {
         type="submit"
         confirm={Function}
         cancel={() => rest.onClose()}
+        style={{ marginTop: 6 }}
       />
     </FormStyled>
   );
