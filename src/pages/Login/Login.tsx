@@ -95,7 +95,7 @@ function Login() {
   useEffect(() => {
     // redirect to home if already logged in
     let redirect = false;
-    if (auth.token !== undefined && !redirect) {
+    if (auth?.token !== undefined && !redirect) {
       redirect = true;
       if (redirect) navigate('/', { replace: true });
     }
@@ -138,7 +138,7 @@ function Login() {
                 label="Username"
                 autoFocus
                 helperText={errors.username ? errors.username.message : ''}
-                error={errors.username && errors?.username?.message.length > 0}
+                error={!(errors.username && errors?.username?.message)}
                 {...register('username')}
               />
               <TextField
@@ -151,7 +151,7 @@ function Login() {
                 id="password"
                 autoComplete="current-password"
                 helperText={errors.password ? errors.password.message : ''}
-                error={errors.password && errors?.password?.message.length > 0}
+                error={!(errors.password && errors?.password?.message)}
                 {...register('password')}
               />
               <SubmitButton
