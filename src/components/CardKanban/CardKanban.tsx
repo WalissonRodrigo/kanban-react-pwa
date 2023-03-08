@@ -10,6 +10,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import MuiMarkdown from 'mui-markdown';
+
 import ActionButton from '@/components/ActionButton';
 import FormKanban from '@/components/FormKanban';
 import { useCardActions } from '@/store/_actions';
@@ -28,52 +30,64 @@ function CardKanban(props: CardKanbanProps) {
     <Paper elevation={3}>
       <Card>
         <CardContent>
-          <Typography component="h5" variant="h5">
+          <Typography component="p" variant="caption">
+            Title:
+          </Typography>
+          <Typography component="h6" variant="h6">
             {card.title}
           </Typography>
           <Divider />
-          <Typography component="h6" variant="h6">
-            {card.content}
+          <Typography component="p" variant="caption">
+            Content:
+          </Typography>
+          <Typography component="div" variant="body1">
+            <MuiMarkdown>{card.content}</MuiMarkdown>
           </Typography>
         </CardContent>
         <Divider />
         <CardActions>
-          <Button
-            size="small"
-            color="success"
-            variant="outlined"
-            onClick={() => {
-              const payload = { ...card, status: StatusKanban.ToDo };
-              actions.updateCard(card.id, payload);
-              actions.getAll();
-            }}
-          >
-            Move: ToDo
-          </Button>
-          <Button
-            size="small"
-            color="info"
-            variant="outlined"
-            onClick={() => {
-              const payload = { ...card, status: StatusKanban.Doing };
-              actions.updateCard(card.id, payload);
-              actions.getAll();
-            }}
-          >
-            Move: Going
-          </Button>
-          <Button
-            size="small"
-            color="warning"
-            variant="outlined"
-            onClick={() => {
-              const payload = { ...card, status: StatusKanban.Done };
-              actions.updateCard(card.id, payload);
-              actions.getAll();
-            }}
-          >
-            Move: Done
-          </Button>
+          {card.status !== StatusKanban.ToDo && (
+            <Button
+              size="small"
+              color="success"
+              variant="outlined"
+              onClick={() => {
+                const payload = { ...card, status: StatusKanban.ToDo };
+                actions.updateCard(card.id, payload);
+                actions.getAll();
+              }}
+            >
+              To Do
+            </Button>
+          )}
+          {card.status !== StatusKanban.Doing && (
+            <Button
+              size="small"
+              color="info"
+              variant="outlined"
+              onClick={() => {
+                const payload = { ...card, status: StatusKanban.Doing };
+                actions.updateCard(card.id, payload);
+                actions.getAll();
+              }}
+            >
+              Going
+            </Button>
+          )}
+          {card.status !== StatusKanban.Done && (
+            <Button
+              size="small"
+              color="warning"
+              variant="outlined"
+              onClick={() => {
+                const payload = { ...card, status: StatusKanban.Done };
+                actions.updateCard(card.id, payload);
+                actions.getAll();
+              }}
+            >
+              Done
+            </Button>
+          )}
         </CardActions>
         <Divider />
         <CardActions>
