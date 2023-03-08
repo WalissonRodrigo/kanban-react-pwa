@@ -1,8 +1,8 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import MenuIcon from '@mui/icons-material/Menu';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+// import Alert from '@mui/material/Alert';
+// import AlertTitle from '@mui/material/AlertTitle';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,20 +14,22 @@ import Tooltip from '@mui/material/Tooltip';
 import { FlexBox } from '@/components/styled';
 import { repository, title } from '@/config';
 import useHotKeysDialog from '@/store/hotkeys';
-import useNotifications from '@/store/notifications';
+// import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 
 import { HotKeysButton } from './styled';
-import { getRandomJoke } from './utils';
+
+// import { getRandomJoke } from './utils';
 
 function Header() {
   const [, sidebarActions] = useSidebar();
   const [, themeActions] = useTheme();
-  const [, notificationsActions] = useNotifications();
+  // const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
 
-  function showNotification() {
+  // Notifications fakes not needed in this case
+  /* function showNotification() {
     notificationsActions.push({
       options: {
         // Show fully customized notification
@@ -45,7 +47,7 @@ function Header() {
         ),
       },
     });
-  }
+  } */
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -62,9 +64,7 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Button onClick={showNotification} color="info">
-              {title}
-            </Button>
+            <Button /* onClick={showNotification} */ color="info">{title}</Button>
           </FlexBox>
           <FlexBox>
             <FlexBox>
