@@ -137,7 +137,7 @@ function Login() {
                 label="Username"
                 autoFocus
                 helperText={errors.username ? errors.username.message : ''}
-                error={!(errors.username && errors?.username?.message)}
+                error={errors.username && errors?.username?.message !== undefined}
                 {...register('username')}
               />
               <TextField
@@ -150,7 +150,7 @@ function Login() {
                 id="password"
                 autoComplete="current-password"
                 helperText={errors.password ? errors.password.message : ''}
-                error={!(errors.password && errors?.password?.message)}
+                error={errors.password && errors?.password?.message !== undefined}
                 {...register('password')}
               />
               {errors.apiError && (
