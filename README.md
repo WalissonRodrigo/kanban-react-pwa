@@ -2,9 +2,7 @@
  <img src="./public/cover.png" title="Base App">
 </a>
 
-# React-PWA - `v2` is here 🚀🎉⚡️
-
-**Starter kit for modern web applications!**
+# Kanban-PWA - is here 🚀🎉⚡️
 
 ## Synopsis
 
