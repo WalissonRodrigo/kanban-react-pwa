@@ -9,8 +9,7 @@ import {
   Avatar,
   Box,
   Button,
-  Checkbox,
-  FormControlLabel,
+  FormControl,
   FormHelperText,
   Link,
   Paper,
@@ -56,7 +55,7 @@ const PaperStyled = styled(Paper)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     width: '85%',
   },
-  height: '55vh',
+  height: '100%',
 }));
 
 const GridStyled = styled(Grid)(({ theme }) => ({
@@ -154,6 +153,20 @@ function Login() {
                 error={!(errors.password && errors?.password?.message)}
                 {...register('password')}
               />
+              {errors.apiError && (
+                <FormControl
+                  style={{
+                    backgroundColor: '#a7505099',
+                    width: '100%',
+                    borderRadius: 4,
+                    minHeight: 24,
+                  }}
+                >
+                  <FormHelperText id="apiError">
+                    <li>{errors.apiError?.message}</li>
+                  </FormHelperText>
+                </FormControl>
+              )}
               <SubmitButton
                 type="submit"
                 fullWidth
@@ -163,9 +176,6 @@ function Login() {
               >
                 Login
               </SubmitButton>
-              {errors.apiError && (
-                <FormHelperText id="apiError">{errors.apiError?.message}</FormHelperText>
-              )}
               <Box mt={5}>
                 <Copyright />
               </Box>
