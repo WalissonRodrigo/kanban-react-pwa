@@ -1,10 +1,11 @@
 /* eslint-disable no-debugger */
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { FormControl, FormHelperText, TextField, styled } from '@mui/material';
 
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Editor } from '@tinymce/tinymce-react';
 
 import { useCardActions } from '@/store/_actions';
 import { Card } from '@/store/_state';
@@ -35,7 +36,7 @@ export default function FormKanban({ ...rest }) {
       status: rest?.card?.status,
     },
   };
-  const { register, handleSubmit, setError, formState } =
+  const { control, register, handleSubmit, setError, formState } =
     useForm<ValidationSchemaProp>(formOptions);
   const { errors } = formState;
 
@@ -78,21 +79,26 @@ export default function FormKanban({ ...rest }) {
         error={errors.title && errors?.title?.message !== undefined}
         {...register('title')}
       />
-      <TextField
-        variant="outlined"
-        margin="normal"
-        required
-        fullWidth
-        multiline
-        minRows={5}
-        label="Content"
-        type="content"
-        id="content"
-        autoComplete="current-content"
-        helperText={errors.content ? errors.content.message : ''}
-        error={errors.content && errors?.content?.message !== undefined}
+      <Controller
+        control={control}
+        render={({ field }) => (
+          <Editor
+            apiKey="gs8t6hmd1jb6hs1wf3awog5dshponbrypxp17ylpq2lka3dt"
+            initialValue={field.value}
+            init={{
+              entity_encoding: 'raw',
+              plugins: 'link image code',
+              toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+            }}
+            onChange={(e) => {
+              field.onChange(e.target.getContent());
+            }}
+            id="content"
+          />
+        )}
         {...register('content')}
       />
+
       {errors.apiError && (
         <FormControl
           style={{
