@@ -11,7 +11,8 @@ export enum StatusKanban {
 
 export type Actions = {
   getAll: () => void;
-  updateCard: (uuid: string, payload: Card) => void;
+  createCard: (payload: Card) => Promise<Card>;
+  updateCard: (uuid: string, payload: Card) => Promise<Card>;
   deleteCard: (uuid: string) => void;
 };
 

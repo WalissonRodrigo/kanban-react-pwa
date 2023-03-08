@@ -21,6 +21,7 @@ function useCardActions(): [Card[], Actions] {
     cards,
     {
       getAll,
+      createCard,
       updateCard,
       deleteCard,
     },
@@ -30,15 +31,23 @@ function useCardActions(): [Card[], Actions] {
     return fetchWrapper.get(`${baseUrl}/cards`).then(setCards);
   }
 
+  function createCard(card: object) {
+    const createAsync = async (card: object) => {
+      return fetchWrapper.post(`${baseUrl}/cards`, card as Card).then((card) => card as Card);
+    };
+    return createAsync(card);
+  }
+
   function updateCard(uuid: string, card: object) {
-    return fetchWrapper
-      .put(`${baseUrl}/cards/${uuid}`, card as Card)
-      .then((card) => setCards([cards.map((_card: Card) => _card.id !== card.id), ...card]));
+    const updateAsync = async (uuid: string, card: object) => {
+      return fetchWrapper.put(`${baseUrl}/cards/${uuid}`, card as Card).then((card) => {
+        return card;
+      });
+    };
+    return updateAsync(uuid, card);
   }
 
   function deleteCard(uuid: string) {
-    return fetchWrapper
-      .delete(`${baseUrl}/cards/${uuid}`)
-      .then((card) => setCards([...cards.filter((_card: Card) => _card.id !== card.id)]));
+    return fetchWrapper.delete(`${baseUrl}/cards/${uuid}`).then((cards) => setCards(cards));
   }
 }
