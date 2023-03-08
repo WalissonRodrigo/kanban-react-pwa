@@ -107,6 +107,7 @@ function CardKanban(props: CardKanbanProps) {
                     textButtonSubmit: 'Confirm',
                     children: (
                       <ActionButton
+                        type="submit"
                         textButtonSubmit="Confirm"
                         confirm={() => {
                           actions.deleteCard(card.id);
