@@ -29,7 +29,7 @@
     "@mui/system": "^5.11.11",
     "@mui/utils": "^5.11.11",
     "@tinymce/tinymce-react": "^4.3.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "history": "^4.10.1",
     "is-mobile": "^4.0.0",
     "mui-markdown": "^0.5.6",
