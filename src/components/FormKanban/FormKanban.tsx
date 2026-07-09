@@ -84,7 +84,7 @@ export default function FormKanban({ ...rest }) {
         required
         render={({ field }) => (
           <Editor
-            apiKey="gs8t6hmd1jb6hs1wf3awog5dshponbrypxp17ylpq2lka3dt"
+            apiKey={process.env.REACT_APP_TINYMCE_API_KEY || ''}
             initialValue={field.value}
             init={{
               entity_encoding: 'raw',
